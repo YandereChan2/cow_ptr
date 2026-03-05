@@ -1,2 +1,2 @@
-# COWcontainer
-实现写时拷贝的容器
+# cow_ptr
+实现写时拷贝的智能指针
