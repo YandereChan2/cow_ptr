@@ -60,6 +60,6 @@ class locally_cow_ptr;
 
 | | |
 |:-|:-|
-|`make_locally_cow_ptr`|使用传入参数创建一个带有新的 `T` 类型对象的控制块，被返回的 `locally_cow_ptr` 管理，使用默认的分配器|
-|`make_locally_cow_ptr_with_allocator`|使用传入参数创建一个带有新的 `T` 类型对象的控制块，被返回的 `locally_cow_ptr` 管理，使用指定的分配器|
-|`swap`|交换所管理的对象<br>(公开成员函数)|
+|`make_locally_cow_ptr`|使用传入参数创建一个带有新的 `T` 类型对象的控制块，被返回的 `locally_cow_ptr` 管理，使用默认的分配器<br>(函数模板)|
+|`make_locally_cow_ptr_with_allocator`|使用传入参数创建一个带有新的 `T` 类型对象的控制块，被返回的 `locally_cow_ptr` 管理，使用指定的分配器<br>(函数模板)|
+|`swap`|交换所管理的对象<br>(函数模板)|
