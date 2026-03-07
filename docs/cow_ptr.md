@@ -13,7 +13,7 @@ class locally_cow_ptr;
 
 每个 `locally_cow_ptr` 指向一个控制块，控制块内有引用计数和一个 `T` 类型的对象。如果一个 `locally_cow_ptr` 指向的控制块不被其他 `locally_cow_ptr` 指向，则称其独占该控制块或者对象，否则它和其他指针共享该控制块或者对象。只有独占对象的 `locally_cow_ptr` 可以修改其内容。而共享状态的 `locally_cow_ptr` 如果请求写入内容，则会先分配一个新的控制块并在其中创建一个原先 `T` 对象的副本，然后再由用户进行修改。`const` 的 `locally_cow_ptr` 不能修所管理对象。
 
-复制构造或者复制赋值 `locally_cow_ptr` 对象可以创造共享状态的 `locally_cow_ptr` ，而独占的 `locally_cow_ptr` 析构或者被赋值以指向其他对象给时会销毁 `T` 对象并解分配控制块。`locally_cow_ptr` 没有空状态。
+创造独占的 `locally_cow_ptr` 对象应该通过工厂函数 `make_locally_cow_ptr` 或 `make_locally_cow_ptr_with_allocator` 进行。独占状态的 `locally_cow_ptr` 被复制会转变成共享状态。独占的 `locally_cow_ptr` 析构或者被赋值以指向其他对象给时会销毁 `T` 对象并解分配控制块。`locally_cow_ptr` 没有空状态。
 
 请注意，`locally_cow_ptr` 所管理的对象持有指向自己的 `locally_cow_ptr` 会因为引用计数无法归零引发内存泄露。另一方面，对 `locally_cow_ptr` 对象本身的操作以及内部对控制块的操作都不是线程安全的，所以请不要跨线程传递 `locally_cow_ptr` 。
 
